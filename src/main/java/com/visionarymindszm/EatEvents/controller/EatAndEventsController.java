@@ -39,9 +39,9 @@ public class EatAndEventsController {
                 ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
         String urlBase = baseUrl+"/joinMembers/"+eatAndEvents.getId();
         model.addAttribute("baseURL", urlBase);
-        String message = eatAndEvents.getPicnicPlannerName()+" created a picnic "+eatAndEvent.getPicnicName()
-                +" and themed "+eatAndEvent.getPicnicTheme()+" and is inviting you to pick a color. Follow the link below" +
-                " "+baseUrl;
+        String message = "*"+eatAndEvents.getPicnicPlannerName()+"* created a picnic *"+eatAndEvent.getPicnicName()
+                +"* themed *"+eatAndEvent.getPicnicTheme()+"* and is inviting you to pick a color. Follow the link below" +
+                " "+urlBase;
         model.addAttribute("whatsAppShare", message);
         log.info(baseUrl);
         log.info(eatAndEvents.toString());
