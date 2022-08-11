@@ -72,7 +72,9 @@ public class EatAndEventsController {
         model.addAttribute("availableColors",  availableColors);
         model.addAttribute("availableColorSize", availableColors.size());
         model.addAttribute("endDate", eatAndEvents.getDateOfThePicnic());
-
+        final String baseUrl =
+                ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+        model.addAttribute("baseURL", baseUrl);
         return "memberColors";
     }
 
