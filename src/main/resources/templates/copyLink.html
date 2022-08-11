@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet">
+        <title>Copy You Link | Eat and Events</title>
+    </head>
+
+    <body th:style="|background-image: url(@{/share_background.png});  background-size:cover;|">
+        <div class="container">
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <h2>SHARE YOUR LINK WITH YOUR FRIENDS</h2>
+
+                </div>
+                <div class="col-md-12 ">
+                    <div class="d-flex justify-content-center">
+                        <input  th:value="${baseURL}" class="form-control"  id="myInput" readonly/>
+                        &nbsp; <button class="btn btn-primary"  onclick="myFunction()">Copy</button><br/>
+                    </div><br/>
+                    <div class="d-flex justify-content-center">
+                        <a th:href="|https://api.whatsapp.com/send?text=@{${whatsAppShare}}|"
+                           class="btn btn-primary" data-action="share/whatsapp/share" >
+                            Share via Whatsapp<i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                    </div><br/>
+<!--                    <div class="d-flex justify-content-center">-->
+<!--                        <a th:href="${baseURL}" class="btn btn-primary" >Click Here To See Your Planner</a>-->
+<!--                    </div>-->
+                </div>
+
+            </div>
+        </div>
+        <script>
+            function myFunction() {
+              /* Get the text field */
+              var copyText = document.getElementById("myInput");
+
+              /* Select the text field */
+              copyText.select();
+              copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+              /* Copy the text inside the text field */
+              navigator.clipboard.writeText(copyText.value);
+               Swal.fire({
+                    icon: 'success',
+                    title: 'Copied to clipboard',
+                    text: 'URL COPIED',
+                    showConfirmButton: true,
+                    timer: 3000
+                }).then(() => {
+                    window.location.href=copyText.value
+                });
+            }
+        </script>
+    </body>
+</html>
